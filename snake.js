@@ -4,8 +4,6 @@ function Snake() {
     this.xSpeed = scale * 1;
     this.ySpeed = 0;
 
-    
-
     this.draw = function() {
             ctx.fillStyle = "#FFFFFF";
             ctx.fillRect(this.x, this.y, scale, scale)
@@ -45,6 +43,15 @@ function Snake() {
                 this.xSpeed = scale * 1;
                 this.ySpeed = 0;
                 break;
+        }
+    }
+
+    this.eat = function(fruit) {
+        console.log(fruit);
+        if (this.x === fruit.x && this.y === fruit.y) {
+            return true;
+        } else {
+            return false
         }
     }
 }
