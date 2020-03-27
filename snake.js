@@ -1,29 +1,50 @@
-var s;
-
-function setup() {
-    createCanvas(600, 600);
-    s = new Snake();
-}
-
-function draw() {
-    background(51);
-    s.update();
-    s.show();
-}
-
 function Snake() {
     this.x = 0;
     this.y = 0;
-    this.xspeed = 1;
-    this.yspeed = 0;
+    this.xSpeed = scale * 1;
+    this.ySpeed = 0;
 
-    this.update = function () {
-        this.x = this.x + this.xspeed;
-        this.y = this.y + this.yspeed;
+    
+
+    this.draw = function() {
+            ctx.fillStyle = "#FFFFFF";
+            ctx.fillRect(this.x, this.y, scale, scale)
     }
+    this.update = function() {
+        this.x = this.x + this.xSpeed;
+        this.y = this.y + this.ySpeed;
 
-    this.show = function() {
-        FileList(225);
-        rect(this.x, this.y, 10, 10)
+        if (this.x > canvas.width) {
+            this.x = 0;
+        }
+        if (this.y > canvas.height) {
+            this.y = 0;
+        }
+        if (this.x < 0 ) {
+            this.x = canvas.width;
+        }
+        if (this.y < 0) {
+            this.y = canvas.height;
+        }
+    }
+    this.changeDirection = function(direction) {
+        switch(direction) {
+            case 'Up':
+                this.xSpeed = 0;
+                this.ySpeed = -scale * 1;
+                break;
+            case 'Down':
+                this.xSpeed = 0;
+                this.ySpeed = scale * 1;
+                break;
+            case 'Left':
+                this.xSpeed = -scale * 1;
+                this.ySpeed = 0;
+                break;
+            case 'Right':
+                this.xSpeed = scale * 1;
+                this.ySpeed = 0;
+                break;
+        }
     }
 }
